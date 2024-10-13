@@ -1,0 +1,199 @@
+{%extends 'store/base.html'%}
+
+{%load static%}
+
+{%block main_block%}
+
+<div class="font-sans p-4 mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl max-w-md">
+  <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-16">Fruits and vegitables</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+    {% for p in products%}
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="{{p.product_image.url}}" alt="food1"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h1 class="text-lg font-bold text-gray-800">{{p.title}}</h1>
+           <h5 class="text-lg text-gray-800">Reviews {{p.review_count}}</h5>
+                {%if p.average_rating%}
+                  {{p.average_rating}}
+                {%else%}
+                 0
+                {%endif%} 
+          <h3 class="text-lg font-semibold text-gray-800">{{p.description}}</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">Rs.{{p.price}}/Kg</h4>
+        </div>
+        <a
+        href="{%url 'product-detail' p.id%}"
+        type="button" class="text-center bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full"
+        >
+          View More
+        </a>
+      </div>
+    </div>
+
+    {%endfor%}
+
+
+
+    <!-- <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food2.webp" alt="food2"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Spicy Veg Burger</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$24</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food4.webp" alt="food3"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Veggie Burger</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$18</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food5.webp" alt="food4"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">The Best Chickpea Food</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$26</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food6.webp" alt="food5"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Burgers with fries</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$26</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food7.webp" alt="food7"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Plate of Pasta</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$18</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food8.webp" alt="food8"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Vegetable Food</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$11</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+      <div class="bg-white flex flex-col h-full">
+        <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+          <img src="https://readymadeui.com/images/food3.webp" alt="food6"
+            class="h-full w-full object-cover" />
+        </div>
+
+        <div class="p-6 text-center flex-1">
+          <h3 class="text-lg font-bold text-gray-800">Pasta with meatballs</h3>
+          <h4 class="text-xl text-gray-800 font-bold mt-3">$15</h4>
+        </div>
+        <button type="button" class="bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full">Add to Cart</button>
+      </div>
+    </div>
+
+  </div> -->
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
+    
+  {%for p in products%}
+  <div class="rounded-md border">
+    <img
+      src="{{p.product_image.url}}"
+      alt="Laptop"
+      class="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
+    />
+    <div class="p-4">
+      <h1 class="inline-flex items-center text-lg font-semibold">
+        {{p.title}}
+      </h1>
+      <p class="mt-3 text-sm text-gray-600">
+        {{p.description}}
+      </p>
+      <div class="mt-3 flex items-center space-x-2">
+        <span class="block text-sm font-semibold">Price : </span>
+        <span class="block">{{p.price}}/kg</span>
+      </div>
+      <div class="mt-4 w-full border">
+        <a
+        href="{%url 'product-detail' p.id%}"
+        type="button"
+        class="w-full block text-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+      >
+        View More
+      </a>  
+      </div>
+
+    </div>
+  </div>
+
+  {%endfor%} -->
+
+
+  <!-- </div> -->
+
+
+{%endblock%}

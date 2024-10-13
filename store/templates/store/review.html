@@ -1,0 +1,53 @@
+{%extends 'store/base.html'%}
+{%load static%}
+
+{%block main_block%}
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4"class="max-w-md mx-auto mt-20 p-6 bg-white border rounded-lg shadow-lg ">
+            <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-16">Add Reviews</h2>
+            <form action="" method="post" enctype="multipart/form-data" class=" mt-20 border w-1/2 mx-auto border p-5 drop-shadow-md">
+             
+                {%csrf_token%}
+                {{form}}
+                
+                <button type="submit" class="border rounded-md p-2 bg-stone-950 bg-gray-700 text-white" >Add Review</button>
+            </form>
+        </div>
+
+        <div class="col-4"></div>
+
+    </div>
+
+</div> -->
+
+<div class="bg-cover w-full h-screen bg-center bg-fixed" style="background-image: url('{% static 'images\about.jpg'%}')">
+    <div class="flex justify-center items-center">
+          <form action="" method="post" enctype="multipart/form-data" class="mt-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3">
+  
+        <div class="w-full max-w-7xl mx-auto p-8">
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Add Reviews</h1>
+              {%csrf_token%}
+              {{form}}
+           <div class="flex justify-end mt-2">
+            <button
+            type="submit" 
+            class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:text-white dark:hover:bg-teal-900"
+          > 
+            Add
+    
+          </button>
+
+           </div>
+          </div>
+      
+        </div>
+          </form>
+        </div>
+    </div>
+  </div>
+
+
+{%endblock%}

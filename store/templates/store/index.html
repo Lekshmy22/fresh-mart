@@ -1,0 +1,219 @@
+{%extends 'store/base.html'%}
+
+{%load static%}
+
+{%block main_block%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Tailwind</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+    <!-- banner -->
+    <div class="bg-cover bg-no-repeat bg-center py-36 " style="background-image: url('{% static 'images\bg_1.jpg'%}');">
+      <div class="container">
+            <h1 class="text-6xl text-gray-800 font-medium mb-4 capitalize">
+                We serve Fresh <br> Vegetables &amp; Fruits  
+            </h1>
+            <p>Organic farming is the production of food without the use of<br>
+                 synthetic chemicals or genetically modified components</p>
+            <div class="mt-12">
+                <a href="#" class="bg-primary border border-primary text-white px-8 py-3 font-medium 
+                    rounded-md hover:bg-transparent hover:text-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- bg-cover bg-no-repeat bg-center py-36 -->
+   
+    <!-- ./banner -->
+
+    <!-- features -->
+    <div class="container py-16">
+        <div class="w-10/12 grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto justify-center">
+            <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                <img src="{%static 'images\delivery-van.svg'%}" alt="Delivery" class="w-12 h-12 object-contain">
+                <div>
+                    <h4 class="font-medium capitalize text-lg">Free Shipping</h4>
+                    <p class="text-gray-500 text-sm">Order over $200</p>
+                </div>
+            </div>
+            <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                <img src="{%static 'images\money-back.svg'%}" alt="Delivery" class="w-12 h-12 object-contain">
+                <div>
+                    <h4 class="font-medium capitalize text-lg">Money Rturns</h4>
+                    <p class="text-gray-500 text-sm">30 days money returs</p>
+                </div>
+            </div>
+            <div class="border border-primary rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+                <img src="{%static 'images\service-hours.svg'%}" alt="Delivery" class="w-12 h-12 object-contain">
+                <div>
+                    <h4 class="font-medium capitalize text-lg">24/7 Support</h4>
+                    <p class="text-gray-500 text-sm">Customer support</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./features -->
+
+    <!-- categories -->
+    <div class="container py-16 space-x-40">
+        <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-16">shop by category</h2>
+        <div class="grid grid-cols-3 gap-3">
+          {%for cat in categories%}
+          <div class="relative rounded-sm overflow-hidden group">
+            <img src="{{cat.image.url}}" alt="category 1" class="w-full">
+            <a href="{%url 'category-product' cat.id%}"
+                class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition">{{cat.name}} </a>
+        </div>
+
+          {%endfor%}
+
+        </div>
+    </div>
+    <!-- ./categories -->
+
+    <!-- offer -->
+    <div class="bg-cover bg-no-repeat bg-center py-36 " style="background-image: url('{% static 'images/bg_3.jpg'%}');">
+    	<div class="container">
+				<div class="row text-2xl text-end px-8">
+          <div class="col-md-6">
+          	<span class="text-4xl font-bold text-center text-gray-700 py-10 ">Best Price For You</span>
+            <h2 class="mb-4">Deal of the day</h2>
+            <p>Fuel your day with the power of fruits and veggies</p>
+            <h3 class="text-3xl font-bold text-end text-gray-700 py-5">Tomato</h3>
+            <span class="price text-2xl font-bold text-end text-gray-700">Rs.35/Kg <a href="#">Now Rs.30/kg Only</a></span>
+            <!-- <div id="timer" class="d-flex mt-5"> -->
+						  <!-- <div class="time" id="days"></div> -->
+						  <!-- <div class="time pl-3" id="hours"></div>
+						  <div class="time pl-3" id="minutes"></div>
+						  <div class="time pl-3" id="seconds"></div>
+						</div> -->
+          </div>
+        </div>   		
+    	</div>
+    </div>
+
+
+    <!-- product -->
+    <div class="py-16 p-4 mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl max-w-md">
+        <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-16">Available products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+          {% for p in products%}
+      
+          <div class="bg-gray-100 p-2 overflow-hidden cursor-pointer">
+            <div class="bg-white flex flex-col h-full">
+              <div class="w-full h-[250px] overflow-hidden mx-auto aspect-w-16 aspect-h-8">
+                <img src="{{p.product_image.url}}" alt="food1"
+                  class="h-full w-full object-cover" />
+              </div>
+      
+              <div class="p-6 text-center flex-1">
+                <h1 class="text-lg font-bold text-gray-800">{{p.title}}</h1>
+                <h5 class="text-lg text-gray-800">Reviews {{p.review_count}}</h5>
+                {%if p.average_rating%}
+                  {{p.average_rating}}
+                {%else%}
+                 0
+                {%endif%}              
+                <h3 class="text-lg font-semibold text-gray-800">{{p.description}}</h3>
+                <h4 class="text-xl text-gray-800 font-bold mt-3">Rs.{{p.price}}/Kg</h4>
+              </div>
+              <a
+              href="{%url 'product-detail' p.id%}"
+              type="button" class="text-center bg-gray-700 font-semibold hover:bg-gray-800 text-white text-sm px-2 py-2.5 w-full"
+              >
+                View More
+              </a>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+    </div>
+    <!-- ./product -->
+
+    <!-- footer -->
+    <div class="bg-gray-100">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6  text-gray-800 flex flex-wrap justify-center flex justify-between">
+          <div class="p-5">
+              <div class="text-xs uppercase text-gray-500 font-medium">Home</div>
+              <a class="my-3 block" href="/#">My Profile <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Products <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">My Orders <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Order Summary <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Partners <span class="text-teal-600 text-xs p-1">New</span>
+              </a>
+          </div>
+          <div class="p-5">
+              <div class="text-xs uppercase text-gray-500 font-medium">Informations</div>
+  
+              <a class="my-3 block" href="/#">Shipping<span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Pricing<span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Return <span class="text-teal-600 text-xs p-1">New</span>
+              </a>
+          </div>
+          <div class="p-5">
+              <div class="text-xs uppercase text-gray-500 font-medium">Support</div>
+  
+              <a class="my-3 block" href="/#">Help Center <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Privacy Policy <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+              <a class="my-3 block" href="/#">Conditions <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+          </div>
+          <div class="p-5">
+              <div class="text-xs uppercase text-gray-500 font-medium">Contact us</div>
+  
+              <a class="my-3 block" href="/#">XXX XXXX, Floor 4 San Francisco, CA
+                  <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+  
+              <a class="my-3 block" href="/#">contact@company.com
+                  <span class="text-teal-600 text-xs p-1"></span>
+              </a>
+          </div>
+      </div>
+       <!-- ./footer -->
+  </div>
+</body>
+
+</html>
+
+
+
+
+
+{%endblock%} 
+
+
+
+
+
+
+
+

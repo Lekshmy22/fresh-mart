@@ -1,0 +1,31 @@
+{%extends 'store/base.html'%}
+{%load static%}
+
+{%block main_block%}
+
+<!-- main form -->
+<div class="bg-cover bg-center bg-fixed" style="background-image: url('{% static 'images\about.jpg'%}')">
+  <div class="flex justify-center items-center">
+        <form action="" method="post" enctype="multipart/form-data" class=" rounded shadow-md w-full md:w-1/2 lg:w-1/3">
+
+      <div class="w-full max-w-7xl mx-auto p-8">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border dark:border-gray-700">
+          <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Checkout</h1>
+            {%csrf_token%}
+            {{form}}
+          <button
+            type="submit" 
+            class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:text-white dark:hover:bg-teal-900"
+          > 
+            Place Order
+    
+          </button>
+        </div>
+    
+      </div>
+        </form>
+      </div>
+  </div>
+</div>
+<!-- end form -->
+{%endblock%}
